@@ -9,23 +9,12 @@ jobs:
   test-api:
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-
-      # INstall Node on the runner
-      - name: Install Node
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: "14.x"
-
-
-      # Install the newman command line utility and also install the html extra reporter
-      - name: Install newman
-        run: |
-          npm install -g newman
-          npm install -g newman-reporter-htmlextra
-
+          node-version: 18
+      - run: npm install -g newman
+      - run: npm install -g newman-reporter-htmlextra
 
       # Make directory to upload the test results
       - name: Make Directory for results
